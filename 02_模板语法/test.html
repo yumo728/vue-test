@@ -29,7 +29,7 @@
     @click='xxx'
 -->
 
-<div id="app">
+<!--<div id="app">
   <h2>1. 双大括号表达式</h2>
     <p>{{content}}</p>
     <p>{{content.toUpperCase()}}</p>
@@ -56,6 +56,40 @@
           }
       }
   })
+</script>-->
+<div id="app">
+  <h2>1. 双大括号表达式</h2>
+  <p>{{content}}</p>
+  <p>{{content.toUpperCase()}}</p>
+  <h2>2. 指令一: 强制数据绑定</h2>
+  <a href="url">个人博客</a>
+  <hr>
+  <a v-bind:href="url">个人博客</a>
+  <hr>
+  <a :href="url">个人博客</a>
+  <h2>3. 指令二: 绑定事件监听</h2>
+  <button click="ping">点我</button>
+  <hr>
+  <button v-on:click="ping">点我</button>
+  <hr>
+  <button @click="ping">点我</button>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  new Vue({
+      el:'#app',
+      data:{
+        content:'wo xiang bian de geng hao',
+          url:'http://github.myumo.top'
+      },
+      methods:{
+          ping(){
+              alert('惦记我')
+          }
+      }
+  })
 </script>
+
 </body>
 </html>

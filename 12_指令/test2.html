@@ -8,8 +8,10 @@
 
 <!--
 1. 注册全局指令
+  //el:指令所在的标签对象
+  //binding:包含指令相关数据的容器对象
   Vue.directive('my-directive', function(el, binding){
-    el.innerHTML = binding.value.toupperCase()
+    el.innerHTML = binding.value.toUpperCase()
   })
 2. 注册局部指令
   directives : {
@@ -27,9 +29,33 @@
   1. 功能类型于v-text, 但转换为全大写
   2. 功能类型于v-text, 但转换为全小写
 -->
+<div id="test">
+  <p>{{msg}}</p>
+  <p v-upper-text="msg"></p>
+  <p v-lower-text="msg"></p>
+</div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+    //1. 注册全局指令
+      //el:指令所在的标签对象
+      //binding:包含指令相关数据的容器对象
+    Vue.directive('upper-text', function(el, binding){
+        console.log(el,binding)
+        el.innerHTML = binding.value.toUpperCase()
+    })
+
+  new Vue ({
+      el:'#test',
+      data:{
+          msg:'This Is Vue'
+      },
+      directives : {
+          'lower-text'(el, binding) {
+              el.innerHTML = binding.value.toLowerCase()
+          }
+      }
+  })
 
 </script>
 </body>

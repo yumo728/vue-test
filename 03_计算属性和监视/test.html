@@ -30,6 +30,52 @@
       el:'#demo',
       data:{
           firstName:'wang',
+          lastName:'yumo',
+          fullName2:'wang yumo'
+
+      },
+      computed:{
+          fullName1(){  //属性的get()
+              return this.firstName+' '+this.lastName
+          },
+
+          fullName3:{
+              get(){
+                  return this.firstName+' '+this.lastName
+              },
+              set(value){
+                  const names = value.split(' ')
+                  this.firstName = names[0]
+                  this.lastName = names[1]
+              }
+          }
+      },
+      watch:{
+          /*firstName:function(value){ //属性的set()
+              this.fullName2 = value+' '+this.lastName
+          },*/
+          /*lastName:function(value){ //属性的set()
+              this.fullName2 = this.firstName+' '+value
+          }*/
+      }
+
+  })
+  vm.$watch('firstName',function (value) {
+      this.fullName2 = value+' '+this.lastName
+  })
+
+  vm.$watch('lastName',function (value) {
+      this.fullName2 = this.firstName+' '+value
+  })
+</script>
+
+
+<!--<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  const vm = new Vue({
+      el:'#demo',
+      data:{
+          firstName:'wang',
           lastName:'hao',
           fullName2:'wang hao'
       },
@@ -58,7 +104,7 @@
 
       watch:{
           //配置监视firstName
-        firstName:function (value) {
+        firstName:function (value) { // 相当于属性的set
             console.log('watch firstNmae',value)
             //更新fullNmae2
             this.fullName2 = value+' '+this.lastName
@@ -74,7 +120,7 @@
         console.log('$watch lastName',value)
         //更新fullName2
         this.fullName2 = this.firstName+' '+value
-    })
+    })-->
 
 
 </script>
